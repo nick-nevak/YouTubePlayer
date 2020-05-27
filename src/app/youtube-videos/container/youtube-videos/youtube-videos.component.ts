@@ -1,0 +1,64 @@
+import { Component, OnInit } from '@angular/core';
+import { EchoesState } from 'src/app/core/store/core-store.module';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { EchoesVideos } from 'src/app/core/store/youtube-videos';
+import { YoutubeSearchService } from 'src/app/core/services/youtube-search.service';
+import { YoutubeVideosInfoService } from 'src/app/core/services/youtube-videos-info.service';
+import { reset, addVideos } from '../../../core/store/youtube-videos/youtube-videos.actions';
+import { switchMap, map } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-youtube-videos',
+  templateUrl: './youtube-videos.component.html',
+  styleUrls: ['./youtube-videos.component.scss']
+})
+export class YoutubeVideosComponent implements OnInit {
+  videos$: Observable<EchoesVideos>;
+  searchQuery: string = '';
+
+  constructor(
+    private youtubeSearch: YoutubeSearchService,
+    private youtubeVideosInfo: YoutubeVideosInfoService,
+    // private playerService: PlayerService,
+    private store: Store<EchoesState>
+  ) {
+  }
+
+  ngOnInit() {
+    this.videos$ = this.store.select(state => state.videos);
+  }
+
+  search(query: string) {
+    debugger;
+    if (this.youtubeSearch.isNewSearchQuery(query)) {
+      this.store.dispatch(reset());
+    }
+    this.youtubeSearch
+      .search(query)
+      .pipe(
+        map((mediaItems: GoogleApiYouTubeSearchResource[]) => mediaItems.map(video => video.id.videoId)),
+        switchMap((mediaIds: string[]) => this.youtubeVideosInfo.fetchVideoData(mediaIds.join(',')))
+      ).subscribe(mediaItems => {
+        this.store.dispatch(addVideos(mediaItems));
+      });
+  }
+
+  playSelectedVideo(media: GoogleApiYouTubeVideoResource) {
+    // this.playerService.playVideo(media);
+    this.queueSelectedVideo(media);
+  }
+
+  queueSelectedVideo(media) {
+    // this.store.dispatch(this.nowPlaylistActions.queueVideo(media));
+  }
+
+  resetPageToken() {
+
+  }
+
+  searchMore(query: string) {
+    this.youtubeSearch.searchMore();
+    this.search(query);
+  }
+}
