@@ -1,2 +1,8 @@
-<p>youtube-videos works!</p>
-<button (click)="search('Mount and blade')">search</button>
+<div class="col-md-12">
+  <button (click)="search('Mount and blade 2')">search</button>
+  <app-youtube-list
+    [list]="videos$ | async"
+    (queue)="queueSelectedVideo($event)"
+    (play)="playSelectedVideo($event)">
+  </app-youtube-list>
+</div>

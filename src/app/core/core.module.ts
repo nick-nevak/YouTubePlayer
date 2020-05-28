@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { YoutubeSearchService } from './services/youtube-search.service';
 import { YoutubeApiService, YoutubeApiFactoryService } from './services/youtube-api.service';
 import { YoutubeVideosInfoService } from './services/youtube-videos-info.service';
+import { YoutubeVideosHttpService } from './services/youtube-videos-http.service';
 
 
 
@@ -19,7 +20,8 @@ import { YoutubeVideosInfoService } from './services/youtube-videos-info.service
     YoutubeApiFactoryService,
     YoutubeApiService,
     YoutubeSearchService,
-    YoutubeVideosInfoService
+    YoutubeVideosInfoService,
+    YoutubeVideosHttpService
   ]
 })
 export class CoreModule { }

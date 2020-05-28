@@ -1,0 +1,18 @@
+.card {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-item{
+  display: inline-flex;
+}
+
+.thumbnail{
+  height: 140px;
+}

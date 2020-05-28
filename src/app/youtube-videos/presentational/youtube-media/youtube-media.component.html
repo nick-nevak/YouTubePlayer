@@ -1,1 +1,38 @@
-<p>youtube-media works!</p>
+<div class="card">
+
+  <div class="thumbnail">
+    <img 
+      src="{{media.snippet?.thumbnails?.high?.url}}"
+      height="140px">
+  </div>
+
+  <div class="title">
+    {{ media.snippet?.title }}
+  </div>
+
+  <div class="actions flex-container">
+    <div class="flex-item">
+      Queue
+    </div>
+    <div class="flex-item">
+      Add
+    </div>
+  </div>
+
+  <div class="info flex-container">
+    <div class="flex-item">
+      {{ media.contentDetails.duration }}
+    </div>
+    <div class="flex-item">
+      {{ media.statistics?.likeCount | number:'2.0'}}
+    </div>
+    <div class="flex-item">
+      {{ media.statistics?.viewCount | number:'2.0'}}
+    </div>
+    <div class="flex-item">
+      Info
+    </div>
+  </div>
+
+</div>
+

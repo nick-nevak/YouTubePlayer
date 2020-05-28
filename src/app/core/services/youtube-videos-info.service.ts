@@ -20,7 +20,7 @@ export class YoutubeVideosInfoService {
     });
   }
 
-  fetchVideoData(mediaId: string) {
+  fetchVideoData(mediaId: string[]) {
     return this.api
       .list(mediaId)
       .pipe(map(response => response.items));

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-youtube-media',
@@ -6,10 +6,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./youtube-media.component.scss']
 })
 export class YoutubeMediaComponent implements OnInit {
+  @Input() media: GoogleApiYouTubeVideoResource;
+  @Output() play = new EventEmitter();
+  @Output() queue = new EventEmitter();
+  @Output() add = new EventEmitter();
 
-  constructor() { }
+  showDesc = false;
+  isPlaying = false;
 
-  ngOnInit(): void {
+  ngOnInit() { }
+
+  playVideo(media: GoogleApiYouTubeVideoResource) {
+    this.play.next(media);
   }
 
+  queueVideo(media: GoogleApiYouTubeVideoResource) {
+    this.queue.next(media);
+  }
+
+  addVideo(media: GoogleApiYouTubeVideoResource) {
+    this.add.next(media);
+  }
+
+  toggle(showDesc: boolean) {
+    this.showDesc = !showDesc;
+  }
 }
