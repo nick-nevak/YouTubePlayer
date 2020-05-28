@@ -1,6 +1,5 @@
-import { ActionReducer, Action, createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import * as YoutubeVideosActions from './youtube-videos.actions';
-import { state } from '@angular/animations';
 export type GoogleApiYoutubeVideo = GoogleApiYouTubeVideoResource | Object;
 
 export interface EchoesVideos {

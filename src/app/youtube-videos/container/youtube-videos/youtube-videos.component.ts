@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { EchoesState } from 'src/app/core/store/core-store.module';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { EchoesVideos, GoogleApiYoutubeVideo } from 'src/app/core/store/youtube-videos';
 import { YoutubeSearchService } from 'src/app/core/services/youtube-search.service';
 import { YoutubeVideosInfoService } from 'src/app/core/services/youtube-videos-info.service';
 import { reset, addVideos } from '../../../core/store/youtube-videos/youtube-videos.actions';
 import { switchMap, map, tap } from 'rxjs/operators';
 import { YoutubeVideosHttpService } from 'src/app/core/services/youtube-videos-http.service';
+import { GoogleApiYoutubeVideo } from 'src/app/core/store/youtube-videos/youtube-videos.reducer';
 
 @Component({
   selector: 'app-youtube-videos',
