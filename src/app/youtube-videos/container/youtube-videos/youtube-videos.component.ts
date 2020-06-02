@@ -8,6 +8,7 @@ import { reset, addVideos } from '../../../core/store/youtube-videos/youtube-vid
 import { switchMap, map, tap } from 'rxjs/operators';
 import { YoutubeVideosHttpService } from 'src/app/core/services/youtube-videos-http.service';
 import { GoogleApiYoutubeVideo } from 'src/app/core/store/youtube-videos/youtube-videos.reducer';
+import { queueVideo } from 'src/app/core/store/now-playlist/now-playlist.actions';
 
 @Component({
   selector: 'app-youtube-videos',
@@ -53,8 +54,8 @@ export class YoutubeVideosComponent implements OnInit {
     this.queueSelectedVideo(media);
   }
 
-  queueSelectedVideo(media) {
-    // this.store.dispatch(this.nowPlaylistActions.queueVideo(media));
+  queueSelectedVideo(media: GoogleApiYouTubeVideoResource) {
+    this.store.dispatch(queueVideo({ media }));
   }
 
   resetPageToken() {

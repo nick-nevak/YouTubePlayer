@@ -31,10 +31,10 @@ export function nowPlaylistReducer(state: YoutubeMediaPlaylist | undefined = ini
   return reducer(state, action);
 }
 
-function addMedia(videos: GoogleApiYouTubeVideoResource[], media: any) {
-  const newMedia = [...videos].findIndex(video => video.id === media.id);
-  const newVideos = newMedia === -1 ? videos.push(media) : videos;
-  return [...videos];
+function addMedia(videos: GoogleApiYouTubeVideoResource[], media: GoogleApiYouTubeVideoResource) {
+  const newMedia = videos.findIndex(video => video.id === media.id);
+  const newVideos = newMedia === -1 ? [...videos, media] : [ ...videos];
+  return newVideos;
 }
 
 function addMedias(videos, medias) {
