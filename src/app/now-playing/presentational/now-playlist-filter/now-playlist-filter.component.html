@@ -1,1 +1,21 @@
-<p>now-playlist-filter works!</p>
+<h3>
+  <span>
+    Now Playing <span *ngIf="!isPlaylistEmpty()">({{ playlistLength }})</span>
+  </span>
+  <button
+    [disabled]="isPlaylistEmpty()"
+    (click)="clearPlaylist()">
+    Clear
+  </button>
+  <div class="playlist-filter pull-right">
+    <i class="fa fa-search" *ngIf="isFilterEmpty()"></i>
+    <i class="fa fa-remove text-danger" 
+      *ngIf="!isFilterEmpty()" 
+      (click)="resetSearchFilter()"
+    ></i>
+    <input type="search" name="playlist-search"
+      [value]="playlist.filter"
+      #searchFilter
+      (input)="handleFilterChange(searchFilter.value)">
+  </div>
+</h3>

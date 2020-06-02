@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-youtube-media',
   templateUrl: './youtube-media.component.html',
-  styleUrls: ['./youtube-media.component.scss']
+  styleUrls: ['./youtube-media.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class YoutubeMediaComponent implements OnInit {
   @Input() media: GoogleApiYouTubeVideoResource;

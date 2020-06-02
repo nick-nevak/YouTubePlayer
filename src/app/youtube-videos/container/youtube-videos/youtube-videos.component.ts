@@ -29,7 +29,7 @@ export class YoutubeVideosComponent implements OnInit {
 
   ngOnInit() {
     this.videos$ = this.store.select(state => state.videos.results);
-    this.search('Mount and blade 2');
+    //this.search('Mount and blade 2');
   }
 
   search(query: string) {

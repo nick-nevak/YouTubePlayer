@@ -1,4 +1,14 @@
 <div>
-  <p>now-playing works!</p>
-</div> 
+  <app-now-playlist-filter
+    [playlist]="nowPlaylist$ | async"
+    (clear)="clearPlaylist()"
+    (filter)="updateFilter($event)"
+    (reset)="resetFilter()"
+  ></app-now-playlist-filter>
+  <app-now-playlist
+    [playlist]="nowPlaylist$ | async"
+    (select)="selectVideo($event)"
+    (remove)="removeVideo($event)"
+  ></app-now-playlist>
+</div>
 

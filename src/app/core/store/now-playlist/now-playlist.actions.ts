@@ -37,7 +37,7 @@ export const queueFailed = createAction(
 
 export const queueVideos = createAction(
   QUEUE_VIDEOS,
-  props<{videos: any}>()
+  props<{videos: GoogleApiYouTubeVideoResource[]}>()
 );
 
 export const selectVideo = createAction(

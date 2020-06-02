@@ -6,6 +6,7 @@ import { YoutubeSearchService } from './services/youtube-search.service';
 import { YoutubeApiService, YoutubeApiFactoryService } from './services/youtube-api.service';
 import { YoutubeVideosInfoService } from './services/youtube-videos-info.service';
 import { YoutubeVideosHttpService } from './services/youtube-videos-http.service';
+import { NowPlaylistService } from './services/now-playlist.service';
 
 
 
@@ -21,7 +22,8 @@ import { YoutubeVideosHttpService } from './services/youtube-videos-http.service
     YoutubeApiService,
     YoutubeSearchService,
     YoutubeVideosInfoService,
-    YoutubeVideosHttpService
+    YoutubeVideosHttpService,
+    NowPlaylistService
   ]
 })
 export class CoreModule { }

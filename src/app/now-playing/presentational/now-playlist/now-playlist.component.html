@@ -1,1 +1,19 @@
 <p>now-playlist works!</p>
+<div>
+    <div class="now-playlist-track" #playlistTrack
+      [class.active]="isActiveMedia(video.id, playlistTrack)"
+      *ngFor="let video of playlist.videos; let index = index"
+      >
+      <a class="" title="{{ video.snippet.title }}"
+        (click)="selectVideo(video)">
+        <span class="track-number">{{ index + 1 }}</span>
+        <section class="video-thumb">
+          <img draggable="false" 
+          src="{{ video.snippet.thumbnails.default.url }}">
+        </section>
+        <span class="video-title">{{ video.snippet.title }}</span>
+        <span class="label label-danger ux-maker remove-track" title="Remove From Playlist"
+          (click)="removeVideo(video)"><i class="fa fa-remove"></i></span>
+      </a>
+    </div>
+</div>
