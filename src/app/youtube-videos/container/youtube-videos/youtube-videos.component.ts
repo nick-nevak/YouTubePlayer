@@ -3,7 +3,6 @@ import { EchoesState } from 'src/app/core/store/core-store.module';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { YoutubeSearchService } from 'src/app/core/services/youtube-search.service';
-import { YoutubeVideosInfoService } from 'src/app/core/services/youtube-videos-info.service';
 import { reset, addVideos } from '../../../core/store/youtube-videos/youtube-videos.actions';
 import { switchMap, map, tap } from 'rxjs/operators';
 import { YoutubeVideosHttpService } from 'src/app/core/services/youtube-videos-http.service';
@@ -17,11 +16,9 @@ import { queueVideo } from 'src/app/core/store/now-playlist/now-playlist.actions
 })
 export class YoutubeVideosComponent implements OnInit {
   videos$: Observable<GoogleApiYoutubeVideo[]>;
-  searchQuery: string = '';
 
   constructor(
     private youtubeSearch: YoutubeSearchService,
-    private youtubeVideosInfo: YoutubeVideosInfoService,
     private youtubeVideosService: YoutubeVideosHttpService,
     // private playerService: PlayerService,
     private store: Store<EchoesState>
@@ -30,7 +27,6 @@ export class YoutubeVideosComponent implements OnInit {
 
   ngOnInit() {
     this.videos$ = this.store.select(state => state.videos.results);
-    //this.search('Mount and blade 2');
   }
 
   search(query: string) {

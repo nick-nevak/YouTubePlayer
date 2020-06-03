@@ -1,36 +1,46 @@
-<div class="card" (click)="queueVideo(media)">
+<div class="card">
 
-  <div class="thumbnail">
-    <img 
-      src="{{media.snippet?.thumbnails?.high?.url}}"
-      height="140px">
+  <div class="preview-container">
+    <img class="preview"
+      src="{{media.snippet?.thumbnails?.high?.url}}">
   </div>
+  
+  <div class="description">
+    <div class="title"
+      matTooltip="{{media.snippet?.title}}">
+      {{ media.snippet?.title }}
+    </div>
 
-  <div class="title">
-    {{ media.snippet?.title }}
-  </div>
+    <div class="actions flex-container">
+      <div class="flex-item queue"
+        matTooltip="Queue this video to now playlist"
+        (click)="queueVideo(media)">
+        <mat-icon>playlist_add</mat-icon>Queue
+      </div>
+      <div class="flex-item add"
+        matTooltip="Add this video to now playlist"
+        (click)="addVideo(media)">
+        <mat-icon>add</mat-icon>Add
+      </div>
+    </div>
 
-  <div class="actions flex-container">
-    <div class="flex-item">
-      Queue
-    </div>
-    <div class="flex-item">
-      Add
-    </div>
-  </div>
-
-  <div class="info flex-container">
-    <div class="flex-item">
-      {{ media.contentDetails.duration }}
-    </div>
-    <div class="flex-item">
-      {{ media.statistics?.likeCount | number:'2.0'}}
-    </div>
-    <div class="flex-item">
-      {{ media.statistics?.viewCount | number:'2.0'}}
-    </div>
-    <div class="flex-item">
-      Info
+    <div class="statistics flex-container">
+      <div class="flex-item duration"
+        matTooltip="Duration">
+        <mat-icon>access_time</mat-icon>{{ media.contentDetails.duration | toFriendlyDuration}}
+      </div>
+      <div class="flex-item likeCount"
+        matTooltip="Number of likes">
+        <mat-icon>thumb_up_off_alt</mat-icon>{{ media.statistics?.likeCount | number:'2.0'}}
+      </div>
+      <div class="flex-item viewCount"
+        matTooltip="Number of viewes">
+        <mat-icon>visibility</mat-icon>{{ media.statistics?.viewCount | number:'2.0'}}
+      </div>
+      <div class="flex-item info"
+        matTooltip="More info about this video">
+        <mat-icon>info_outline</mat-icon>
+      </div>
     </div>
   </div>
 

@@ -1,4 +1,3 @@
-import { Http, URLSearchParams, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { YoutubeMediaPlaylist } from '../store/now-playlist/now-playlist.reducer';

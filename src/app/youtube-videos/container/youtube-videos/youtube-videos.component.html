@@ -1,5 +1,9 @@
+<div class="col-md-12 mt-4">
+  <app-youtube-search
+    (searchUpdated)="search($event)">
+  </app-youtube-search>
+</div>
 <div class="col-md-12">
-  <button (click)="search('Mount and blade 2')">search</button>
   <app-youtube-list
     [list]="videos$ | async"
     (queue)="queueSelectedVideo($event)"

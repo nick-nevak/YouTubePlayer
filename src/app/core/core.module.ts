@@ -2,28 +2,32 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreStoreModule } from './store/core-store.module';
 import { HttpClientModule } from '@angular/common/http';
-import { YoutubeSearchService } from './services/youtube-search.service';
-import { YoutubeApiService, YoutubeApiFactoryService } from './services/youtube-api.service';
-import { YoutubeVideosInfoService } from './services/youtube-videos-info.service';
-import { YoutubeVideosHttpService } from './services/youtube-videos-http.service';
-import { NowPlaylistService } from './services/now-playlist.service';
+import { MaterialModule } from './material/material.module';
+import { ToFriendlyDurationPipe } from './pipes/to-friendly-duration.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ToFriendlyDurationPipe
+  ],
   imports: [
     CommonModule,
     CoreStoreModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [
-    YoutubeApiFactoryService,
-    YoutubeApiService,
-    YoutubeSearchService,
-    YoutubeVideosInfoService,
-    YoutubeVideosHttpService,
-    NowPlaylistService
+  exports: [
+    CommonModule,
+    CoreStoreModule,
+    HttpClientModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToFriendlyDurationPipe
   ]
 })
 export class CoreModule { }

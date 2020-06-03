@@ -2,3 +2,18 @@
   border: 2px solid red;
   margin-top: 2px;
 }
+
+.search-form{
+  display: flex;
+  align-items: center;
+}
+
+.search-field, .search-btn{
+  display: inline-flex;
+}
+
+.search-btn mat-icon{
+  font-size: 35px;
+  height: 35px;
+  width: 35px;
+}
