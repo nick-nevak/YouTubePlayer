@@ -11,8 +11,7 @@ export class NowPlaylistService {
   public playlist$: Observable<YoutubeMediaPlaylist>;
 
   constructor(
-    public store: Store<EchoesState>,
-    private youtubeVideosInfo: YoutubeVideosInfoService
+    public store: Store<EchoesState>
   ) {
     this.playlist$ = this.store.select(state => state.nowPlaylist);
   }
@@ -21,12 +20,12 @@ export class NowPlaylistService {
     this.store.dispatch(queueVideos({ videos }));
   }
 
-  removeVideo(media) {
-    this.store.dispatch(removeVideo(media));
+  removeVideo(media: GoogleApiYouTubeVideoResource) {
+    this.store.dispatch(removeVideo({media}));
   }
 
-  selectVideo(media) {
-    this.store.dispatch(selectVideo(media));
+  selectVideo(media: GoogleApiYouTubeVideoResource) {
+    this.store.dispatch(selectVideo({media}));
   }
 
   updateFilter(filter: string) {

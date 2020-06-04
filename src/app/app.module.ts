@@ -7,11 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { YoutubeVideosModule } from './youtube-videos/youtube-videos.module';
 import { CoreModule } from './core/core.module';
 import { NowPlayingModule } from './now-playing/now-playing.module';
-import { YoutubeApiFactoryService, YoutubeApiService } from './core/services/youtube-api.service';
-import { YoutubeSearchService } from './core/services/youtube-search.service';
-import { YoutubeVideosInfoService } from './core/services/youtube-videos-info.service';
-import { YoutubeVideosHttpService } from './core/services/youtube-videos-http.service';
-import { NowPlaylistService } from './core/services/now-playlist.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,18 +17,11 @@ import { NowPlaylistService } from './core/services/now-playlist.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreModule,
     AppRoutingModule,
+    CoreModule,
+    SharedModule,
     YoutubeVideosModule,
     NowPlayingModule
-  ],
-  providers: [
-    YoutubeApiFactoryService,
-    YoutubeApiService,
-    YoutubeSearchService,
-    YoutubeVideosInfoService,
-    YoutubeVideosHttpService,
-    NowPlaylistService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { NowPlayingComponent } from './container/now-playing/now-playing.component';
 import { NowPlaylistFilterComponent } from './presentational/now-playlist-filter/now-playlist-filter.component';
 import { NowPlaylistComponent } from './presentational/now-playlist/now-playlist.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,7 +13,7 @@ import { NowPlaylistComponent } from './presentational/now-playlist/now-playlist
     NowPlaylistComponent
   ],
   imports: [
-    CommonModule
+    SharedModule
   ],
   exports: [
     NowPlayingComponent

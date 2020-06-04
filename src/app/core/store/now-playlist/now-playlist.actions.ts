@@ -32,7 +32,7 @@ export const updateIndexByMedia = createAction(
 
 export const queueFailed = createAction(
   QUEUE_FAILED,
-  props<{media: any}>()
+  props<{media: GoogleApiYouTubeVideoResource}>()
 );
 
 export const queueVideos = createAction(
@@ -47,7 +47,7 @@ export const selectVideo = createAction(
 
 export const removeVideo = createAction(
   REMOVE,
-  props<{media: any}>()
+  props<{media: GoogleApiYouTubeVideoResource}>()
 );
 
 export const changeFilter = createAction(

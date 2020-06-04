@@ -1,0 +1,20 @@
+.flex-container{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.description, .filter{
+  display: inline-flex;
+}
+
+.description{
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.clear-icon{
+  cursor: pointer;
+}

@@ -1,19 +1,23 @@
-<p>now-playlist works!</p>
-<div>
-    <div class="now-playlist-track" #playlistTrack
-      [class.active]="isActiveMedia(video.id, playlistTrack)"
-      *ngFor="let video of playlist.videos; let index = index"
-      >
-      <a class="" title="{{ video.snippet.title }}"
-        (click)="selectVideo(video)">
-        <span class="track-number">{{ index + 1 }}</span>
-        <section class="video-thumb">
-          <img draggable="false" 
-          src="{{ video.snippet.thumbnails.default.url }}">
-        </section>
-        <span class="video-title">{{ video.snippet.title }}</span>
-        <span class="label label-danger ux-maker remove-track" title="Remove From Playlist"
-          (click)="removeVideo(video)"><i class="fa fa-remove"></i></span>
-      </a>
+<div 
+  *ngFor="let video of playlist.videos; let index = index"
+  class="now-playlist-track" 
+  #playlistTrack
+  [class.active]="isActiveMedia(video.id, playlistTrack)">
+
+  <div class="flex-container" (click)="selectVideo(video)">
+    <div class="video-thumb flex-item">
+      <div class="track-number">
+        {{ index + 1 }}
+      </div>
+      <img src="{{ video.snippet.thumbnails.default.url }}">
     </div>
+    <div class="video-title flex-item">
+      {{ video.snippet.title }}
+    </div>
+    <div class="remove-btn flex-item" (click)="removeVideo(video)"
+      matTooltip="Remove from playlist">
+      <mat-icon>highlight_remove</mat-icon>
+    </div>
+  </div>
+
 </div>

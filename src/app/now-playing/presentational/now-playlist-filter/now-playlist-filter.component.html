@@ -1,21 +1,42 @@
-<h3>
-  <span>
-    Now Playing <span *ngIf="!isPlaylistEmpty()">({{ playlistLength }})</span>
-  </span>
-  <button
-    [disabled]="isPlaylistEmpty()"
-    (click)="clearPlaylist()">
-    Clear
-  </button>
-  <div class="playlist-filter pull-right">
-    <i class="fa fa-search" *ngIf="isFilterEmpty()"></i>
-    <i class="fa fa-remove text-danger" 
-      *ngIf="!isFilterEmpty()" 
-      (click)="resetSearchFilter()"
-    ></i>
-    <input type="search" name="playlist-search"
-      [value]="playlist.filter"
-      #searchFilter
-      (input)="handleFilterChange(searchFilter.value)">
+<div class="flex-container">
+
+  <div class="description">
+    <div>
+      Now Playing 
+      <span *ngIf="!isPlaylistEmpty()">
+        ({{ playlistLength }})
+      </span>
+    </div>
+    <mat-icon 
+      class="clear-icon" 
+      [disabled]="isPlaylistEmpty()"
+      (click)="clearPlaylist()">
+      delete_outline
+    </mat-icon>
   </div>
-</h3>
+
+  <div class="filter">
+    <form 
+      class="filter-form"
+      [formGroup]="searchForm">
+      <mat-form-field
+        appearance="outline">
+        <mat-label>Search</mat-label>
+        <input 
+          formControlName="search"
+          matInput 
+          type="text"
+          autocomplete="off"
+          (input)="handleFilterChange()">
+        <button 
+          mat-button
+          matSuffix 
+          mat-icon-button
+          (click)="resetSearchFilter()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </div>
+  
+</div>
