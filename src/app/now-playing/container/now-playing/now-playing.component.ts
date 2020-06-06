@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { YoutubeMediaPlaylist } from 'src/app/core/store/now-playlist/now-playlist.reducer';
 import { Observable } from 'rxjs';
 import { NowPlaylistService } from 'src/app/core/services/now-playlist.service';
+import { PlayerService } from 'src/app/core/services/player.service';
 
 @Component({
   selector: 'app-now-playing',
@@ -13,7 +14,7 @@ export class NowPlayingComponent implements OnInit {
 
   constructor(
     public nowPlaylistService: NowPlaylistService,
-    // private playerService: PlayerService
+    private playerService: PlayerService
   ) { }
 
   ngOnInit() {
@@ -22,7 +23,7 @@ export class NowPlayingComponent implements OnInit {
 
   selectVideo(media: GoogleApiYouTubeVideoResource) {
     this.nowPlaylistService.updateIndexByMedia(media.id);
-    // this.playerService.playVideo(media);
+    this.playerService.playVideo(media);
   }
 
   updateFilter(searchFilter: string) {

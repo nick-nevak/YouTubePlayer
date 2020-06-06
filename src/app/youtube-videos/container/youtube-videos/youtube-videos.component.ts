@@ -8,6 +8,7 @@ import { switchMap, map, tap } from 'rxjs/operators';
 import { YoutubeVideosHttpService } from 'src/app/core/services/youtube-videos-http.service';
 import { GoogleApiYoutubeVideo } from 'src/app/core/store/youtube-videos/youtube-videos.reducer';
 import { queueVideo } from 'src/app/core/store/now-playlist/now-playlist.actions';
+import { PlayerService } from 'src/app/core/services/player.service';
 
 @Component({
   selector: 'app-youtube-videos',
@@ -20,7 +21,7 @@ export class YoutubeVideosComponent implements OnInit {
   constructor(
     private youtubeSearch: YoutubeSearchService,
     private youtubeVideosService: YoutubeVideosHttpService,
-    // private playerService: PlayerService,
+    private playerService: PlayerService,
     private store: Store<EchoesState>
   ) {
   }
@@ -46,7 +47,7 @@ export class YoutubeVideosComponent implements OnInit {
   }
 
   playSelectedVideo(media: GoogleApiYouTubeVideoResource) {
-    // this.playerService.playVideo(media);
+    this.playerService.playVideo(media);
     this.queueSelectedVideo(media);
   }
 

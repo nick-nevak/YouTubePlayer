@@ -8,6 +8,7 @@ import { YoutubeVideosModule } from './youtube-videos/youtube-videos.module';
 import { CoreModule } from './core/core.module';
 import { NowPlayingModule } from './now-playing/now-playing.module';
 import { SharedModule } from './shared/shared.module';
+import { PlayerModule } from './player/player.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     SharedModule,
     YoutubeVideosModule,
-    NowPlayingModule
+    NowPlayingModule,
+    PlayerModule
   ],
   bootstrap: [AppComponent]
 })

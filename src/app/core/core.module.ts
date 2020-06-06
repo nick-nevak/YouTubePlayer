@@ -5,6 +5,7 @@ import { YoutubeVideosHttpService } from './services/youtube-videos-http.service
 import { YoutubeVideosInfoService } from './services/youtube-videos-info.service';
 import { YoutubeSearchService } from './services/youtube-search.service';
 import { YoutubeApiService, YoutubeApiFactoryService } from './services/youtube-api.service';
+import { PlayerService } from './services/player.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { YoutubeApiService, YoutubeApiFactoryService } from './services/youtube-
     YoutubeSearchService,
     YoutubeVideosInfoService,
     YoutubeVideosHttpService,
-    NowPlaylistService
+    NowPlaylistService,
+    PlayerService
   ]
 })
 export class CoreModule { }
