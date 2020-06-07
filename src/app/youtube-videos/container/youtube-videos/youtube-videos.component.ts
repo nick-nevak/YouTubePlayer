@@ -3,7 +3,7 @@ import { EchoesState } from 'src/app/core/store/core-store.module';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { YoutubeSearchService } from 'src/app/core/services/youtube-search.service';
-import { reset, addVideos } from '../../../core/store/youtube-videos/youtube-videos.actions';
+import { reset, addVideos, searchNewQuery, searchMore } from '../../../core/store/youtube-videos/youtube-videos.actions';
 import { switchMap, map, tap } from 'rxjs/operators';
 import { YoutubeVideosHttpService } from 'src/app/core/services/youtube-videos-http.service';
 import { GoogleApiYoutubeVideo } from 'src/app/core/store/youtube-videos/youtube-videos.reducer';
@@ -19,31 +19,16 @@ export class YoutubeVideosComponent implements OnInit {
   videos$: Observable<GoogleApiYoutubeVideo[]>;
 
   constructor(
-    private youtubeSearch: YoutubeSearchService,
-    private youtubeVideosService: YoutubeVideosHttpService,
     private playerService: PlayerService,
     private store: Store<EchoesState>
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
     this.videos$ = this.store.select(state => state.videos.results);
   }
 
   search(query: string) {
-    if (this.youtubeSearch.isNewSearchQuery(query)) {
-      this.store.dispatch(reset());
-    }
-    this.youtubeVideosService
-      .search(query)
-      .pipe(
-        tap(mediaItems => console.log('search:', mediaItems)),
-        map((mediaItems: GoogleApiYouTubeSearchResource[]) => mediaItems.map(video => video.id.videoId)),
-        switchMap((mediaIds: string[]) => this.youtubeVideosService.fetchVideoData(mediaIds)),
-        tap(videos => console.log('videos:', videos))
-      ).subscribe(mediaItems => {
-        this.store.dispatch(addVideos({ videos: mediaItems }));
-      });
+    this.store.dispatch(searchNewQuery({ query }));
   }
 
   playSelectedVideo(media: GoogleApiYouTubeVideoResource) {
@@ -55,12 +40,8 @@ export class YoutubeVideosComponent implements OnInit {
     this.store.dispatch(queueVideo({ media }));
   }
 
-  resetPageToken() {
-
+  searchMore() {
+    this.store.dispatch(searchMore());
   }
 
-  searchMore(query: string) {
-    this.youtubeSearch.searchMore();
-    this.search(query);
-  }
 }
