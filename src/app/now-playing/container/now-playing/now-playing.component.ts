@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { YoutubeMediaPlaylist } from 'src/app/core/store/now-playlist/now-playlist.reducer';
 import { Observable } from 'rxjs';
-import { NowPlaylistService } from 'src/app/core/services/now-playlist.service';
 import { PlayerService } from 'src/app/core/services/player.service';
+import { Store } from '@ngrx/store';
+import { EchoesState } from 'src/app/core/store/core-store.module';
+import { updateIndexByMedia, changeFilter, removeAll, removeVideo } from 'src/app/core/store/now-playlist/now-playlist.actions';
 
 @Component({
   selector: 'app-now-playing',
@@ -12,33 +14,32 @@ import { PlayerService } from 'src/app/core/services/player.service';
 export class NowPlayingComponent implements OnInit {
   public nowPlaylist$: Observable<YoutubeMediaPlaylist>;
 
-  constructor(
-    public nowPlaylistService: NowPlaylistService,
-    private playerService: PlayerService
-  ) { }
+  constructor(private store: Store<EchoesState>,
+              private playerService: PlayerService) { }
 
   ngOnInit() {
-    this.nowPlaylist$ = this.nowPlaylistService.playlist$;
+    this.nowPlaylist$ = this.store.select(state => state.nowPlaylist);
   }
 
   selectVideo(media: GoogleApiYouTubeVideoResource) {
-    this.nowPlaylistService.updateIndexByMedia(media.id);
+    this.store.dispatch(updateIndexByMedia({ mediaId: media.id }));
     this.playerService.playVideo(media);
   }
 
-  updateFilter(searchFilter: string) {
-    this.nowPlaylistService.updateFilter(searchFilter);
+  updateFilter(filter: string) {
+    this.store.dispatch(changeFilter({ filter }));
   }
 
   resetFilter() {
-    this.nowPlaylistService.updateFilter('');
+    this.store.dispatch(changeFilter({ filter: '' }));
   }
 
   clearPlaylist() {
-    this.nowPlaylistService.clearPlaylist();
+    this.store.dispatch(removeAll());
   }
 
-  removeVideo(media) {
-    this.nowPlaylistService.removeVideo(media);
+  removeVideo(media: GoogleApiYouTubeVideoResource) {
+    this.store.dispatch(removeVideo({media}));
   }
+
 }

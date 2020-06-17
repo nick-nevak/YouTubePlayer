@@ -3,7 +3,7 @@
   margin-top: 2px;
 }
 
-.search-form{
+.search-form {
   display: flex;
   align-items: center;
 }
@@ -16,4 +16,13 @@
   font-size: 35px;
   height: 35px;
   width: 35px;
+}
+
+.flex-container {
+  display: flexbox;
+  align-items: center;
+}
+
+.flex-item {
+  display: inline-flex;
 }

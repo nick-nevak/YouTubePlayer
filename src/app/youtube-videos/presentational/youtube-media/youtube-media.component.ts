@@ -10,7 +10,7 @@ export class YoutubeMediaComponent implements OnInit {
   @Input() media: GoogleApiYouTubeVideoResource;
   @Output() play = new EventEmitter();
   @Output() queue = new EventEmitter();
-  @Output() add = new EventEmitter();
+  // @Output() add = new EventEmitter();
 
   showDesc = false;
   isPlaying = false;
@@ -25,9 +25,9 @@ export class YoutubeMediaComponent implements OnInit {
     this.queue.next(media);
   }
 
-  addVideo(media: GoogleApiYouTubeVideoResource) {
-    this.add.next(media);
-  }
+  // addVideo(media: GoogleApiYouTubeVideoResource) {
+  //   this.add.next(media);
+  // }
 
   toggle(showDesc: boolean) {
     this.showDesc = !showDesc;

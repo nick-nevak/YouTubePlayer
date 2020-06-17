@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CoreStoreModule } from './store/core-store.module';
-import { NowPlaylistService } from './services/now-playlist.service';
 import { YoutubeVideosHttpService } from './services/youtube-videos-http.service';
 import { YoutubeVideosInfoService } from './services/youtube-videos-info.service';
 import { YoutubeSearchService } from './services/youtube-search.service';
@@ -20,7 +19,6 @@ import { PlayerService } from './services/player.service';
     YoutubeSearchService,
     YoutubeVideosInfoService,
     YoutubeVideosHttpService,
-    NowPlaylistService,
     PlayerService
   ]
 })

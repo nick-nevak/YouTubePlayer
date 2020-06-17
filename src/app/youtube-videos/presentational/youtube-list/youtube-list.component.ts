@@ -10,7 +10,7 @@ export class YoutubeListComponent {
   @Input() list: any;
   @Output() play = new EventEmitter();
   @Output() queue = new EventEmitter();
-  @Output() add = new EventEmitter();
+  // @Output() add = new EventEmitter();
 
   constructor() { }
 
@@ -22,8 +22,8 @@ export class YoutubeListComponent {
     this.queue.next(media);
   }
 
-  addVideo(media) {
-    this.add.next(media);
-  }
+  // addVideo(media) {
+  //   this.add.next(media);
+  // }
 
 }
